@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Shop Categories";
+}
+@model List<ProductViewModel>
+
+<body id="s_cat_body">
+
+    <div class="banner">
+        <h1>BuildIT Computers</h1>
+        <h2>Top categories:</h2>
+    </div>
+    <div id="main">
+        <div class="galery">
+            <div onclick="toggleCategory('Laptop')" style="background-image: url('@Url.Content("~/images/cat1.png")');">
+                <p>Laptops</p>
+            </div>
+            <div onClick="location.href='@Url.Action("Builder", "Home")'" style="background-image: url('@Url.Content("~/images/cat_2.jpg")');">
+                <p>Custom laptops</p>
+            </div>
+            <div onclick="toggleCategory('Accessories')" style="background-image: url('@Url.Content("~/images/cat_3.png")');">
+                <p>Accessories</p>
+            </div>
+            <div onclick="toggleCategory('Deal')" style="background-image: url('@Url.Content("~/images/cat_4.png")');">
+                <p>Deals</p>
+            </div>
+            <div onClick="location.href='@Url.Action("Support", "Home")'" style="background-image: url('@Url.Content("~/images/cat_5.png")');">
+                <p>Support</p>
+            </div>
+        </div>
+    </div>
+    <div id="cat_main">
+        <div class="section trending">
+            <div class="container">
+                <div class="row trending-box">
+                        @if (Model != null && Model.Any())  
+                    {
+                        @foreach (var product in Model)
+                        {
+                            System.Diagnostics.Debug.WriteLine($"Rendering Product: {product.Name}, MainImageUrl: {product.MainImageUrl}");
+                            <div class="prod col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <!-- Product Image -->
+                                        <a href="@Url.Action("ProductDetails", "Product", new { id = product.Id })">
+                                            <img src="@Url.Content(product.MainImageUrl)" alt="@product.Name">
+                                        </a>
+                                    </div>
+                                    <div class="down-content">
+                                        <!-- Category -->
+                                        <span class="category">@product.Category</span>
+
+                                        <!-- Product Name -->
+                                        <h4>@product.Name</h4>
+
+                                        <!-- Link to Product Details Page -->
+                                        <a href="@Url.Action("ProductDetails", "Product", new { id = product.Id })">
+                                            <i class="fa fa-shopping-bag"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p>No products available.</p>  <!-- If Model is null or empty -->
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>

@@ -1,0 +1,185 @@
+﻿@{
+    ViewData["Title"] = "Builder";
+}
+<body id="prod_bg">
+
+    <div class="banner">
+        <h1>BuildIT Computers</h1>
+        <h2>Your choice in parts:</h2>
+    </div>
+
+    <div id="build_main">
+        <div class="product_details mt-60 mb-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="product-details-tab">
+                            <div class="main-image">
+                                <img src="~/images/frame1.png" alt="big-1" id="frame_top" class="hidden">
+                                <img src="~/images/cpu_1.png" alt="big-1" id="cpu" class="hidden">
+                                <img src="~/images/cpu_2.png" alt="big-1" id="cpu1" class="hidden">
+                                <img src="~/images/gpu_1.png" alt="big-1" id="gpu" class="hidden">
+                                <img src="~/images/gpu_2.png" alt="big-1" id="gpu1" class="hidden">
+                                <img src="~/images/ssd_1.png" alt="big-1" id="storage" class="hidden">
+                                <img src="~/images/ssd_2.png" alt="big-1" id="storage1" class="hidden">
+                                <img src="~/images/frame2.png" alt="big-1" id="frame_bottom" class="hidden">
+                                <img src="~/images/frame2_1.png" alt="big-1" id="frame_bottom_black" class="hidden">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="product_d_right">
+                            <form action="#">
+                                <h1>Custom Laptop</h1>
+                                <div class="price_box">
+                                    <span class="current_price" id="price1">$0.00</span>
+                                </div>
+                                <div class="product_desc">
+                                </div>
+                                <div class="product_variant color color1">
+                                    <h3>Frame Colors</h3>
+                                    <div class="lt_items">
+                                        <div onclick="pickCol(this)" Class="col_pick btn_black" style="cursor: pointer;">
+                                        </div>
+                                        <div onclick="pickCol(this)" Class="col_pick btn_white" style="cursor: pointer;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product_variant color ">
+                                    <h3>CPU</h3>
+                                    <div class="lt_items">
+                                        <div onclick="pickCPU(this)" Class="cpu_pick" style="cursor: pointer;">
+                                            Intel i7<br>
+                                            219.98€
+                                        </div>
+                                        <div onclick="pickCPU(this)" Class="cpu_pick" style="cursor: pointer;">
+                                            Amd Ryzen 7 <br>
+                                            199€
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product_variant color">
+                                    <h3>GPU</h3>
+                                    <div class="lt_items">
+                                        <div onclick="pickGPU(this)" Class="gpu_pick" style="cursor: pointer;">
+                                            Nvidia RTX 3070<br>
+                                            459€
+                                        </div>
+                                        <div onclick="pickGPU(this)" Class="gpu_pick" style="cursor: pointer;">
+                                            AMD Radeon RX 7900M<br>
+                                            399.99€
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product_variant color">
+                                    <h3>SSD</h3>
+                                    <div class="lt_items">
+                                        <div onclick="pickSSD(this)" Class="ssd_pick" style="cursor: pointer;">
+                                            SATA 1TB<br>
+                                            89.99€
+                                        </div>
+                                        <div onclick="pickSSD(this)" Class="ssd_pick" style="cursor: pointer;">
+                                            NVME 2TB<br>
+                                            199.99€
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product_variant quantity">
+                                    <button class="button" type="submit">Add to cart</button>
+                                </div>
+                                <div class="product_meta">
+                                    <span>Category: <a asp-area="" asp-controller="Home" asp-action="s_categ">Laptop</a></span>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="product_d_info mb-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="product_d_inner">
+                            <div class="product_info_button">
+                                <ul class="nav" role="tablist">
+                                    <li><a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false" onclick="switchTab('info')">Description</a></li>
+                                    <li><a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false" onclick="switchTab('reviews')">Reviews</a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="info" role="tabpanel">
+                                    <div class="product_info_content">
+                                        <p>A custom made laptop for anyone</p>
+                                        <p>With an elegant design and premium quality part, our laptops can hold their own agains any other laptop on them market. Its ypur's to have with a large selection of parts to choose from to make the best and most precise laptop you need. All parts selected are shown in the total proce as you build it, no need to guess the price. Its more than just a product, it's our promise to provide full support for a minimum of 2 years with repairs and part replacement. If you choose the extended builder waranty, you can even upgrade the laptop at any time or change out specific parts as wanted.</p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="reviews" role="tabpanel">
+                                    <div class="reviews_wrapper">
+                                        <h2>1 review for Custom laptop</h2>
+                                        <div class="reviews_comment_box">
+                                            <div class="comment_thmb">
+                                                <img src="./images/user.png" alt="">
+                                            </div>
+                                            <div class="comment_text">
+                                                <div class="reviews_meta">
+                                                    <div class="star_rating">
+                                                        <ul>
+                                                            <li class="star"><i class="fa fa-star"></i></a></li>
+                                                            <li class="star"><i class="fa fa-star"></i></a></li>
+                                                            <li class="star"><i class="fa fa-star"></i></a></li>
+                                                            <li class="star"><i class="fa fa-star"></i></a></li>
+                                                            <li><i class="fa fa-star"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <p><strong>User1 </strong>- Nov. 14. 2023</p>
+                                                    <span>Best laptop</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="comment_title">
+                                            <h2>Add a review </h2>
+                                        </div>
+
+
+                                        <div class="self_ratting mb-10">
+                                            <h3>Your rating</h3>
+                                            <div id="rating_bar">
+                                                <span id="rate_1"></span>
+                                                <span id="rate_2"></span>
+                                                <span id="rate_3"></span>
+                                                <span id="rate_4"></span>
+                                                <span id="rate_5"></span>
+                                            </div>
+                                        </div>
+                                        <form action="">
+                                            <div class="input-wrapper">
+                                                <input type="text" name="name" id="name" required>
+                                                <label for="name">Name</label>
+                                            </div>
+                                            <div class="input-wrapper">
+                                                <input type="text" name="subject" id="subject" required>
+                                                <label for="subject">Subject</label>
+                                            </div>
+                                            <div class="input-wrapper">
+                                                <textarea name="message" id="message" rows="5" required></textarea>
+                                                <label for="message">Message</label>
+                                            </div>
+                                            <input type="submit" value="Send">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,172 @@
+﻿@{
+    ViewData["Title"] = "Product";
+}
+
+@model ProductDetailsViewModel
+
+<body id="prod_bg">
+
+    <div class="banner">
+        <h1>BuildIT Computers</h1>
+        <h2>Item details:</h2>
+    </div>
+
+    <div id="prod_main">
+        <div class="product_details mt-60 mb-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="product-details-tab">
+                            <div class="main-image">
+                                <img src="@Model.Images.First(i => i.IsMainImage).Url" alt="@Model.Name">
+                            </div>
+                            <div class="small-gallery">
+                                @foreach (var img in Model.Images.Skip(1))
+                                {
+                                    <img src="@img.Url" alt="@Model.Name">
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="product_d_right">
+                            <form action="#">
+                                <h1>@Model.Name</h1>
+                                <div class="product_ratting">
+                                    <ul>
+                                        <li class="star"><i class="fa fa-star"></i></a></li>
+                                        <li class="star"><i class="fa fa-star"></i></a></li>
+                                        <li class="star"><i class="fa fa-star"></i></a></li>
+                                        <li class="star"><i class="fa fa-star"></i></a></li>
+                                        <li class="star"><i class="fa fa-star"></i></a></li>
+                                    </ul>
+
+                                </div>
+                                <div class="price_box">
+                                    <span class="current_price">$@Model.Price</span>
+
+                                </div>
+                                <div class="product_desc">
+                                    <ul>
+
+                                        <li>In Stock</li>
+                                        <li>Free delivery available*</li>
+                                        <li>Sale 30% Off Use Code : 'build'</li>
+                                    </ul>
+                                    <p>@Model.ShortDesc</p>
+                                </div>
+                                <div class="product_variant quantity">
+                                    <input min="1" max="100" value="1" type="number">
+                                    <button class="button" type="submit">Add to cart</button>
+                                </div>
+                                <div class=" product_d_action">
+                                    <ul>
+                                        <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
+                                        <li><a href="#" title="Add to wishlist">+ Compare</a></li>
+                                    </ul>
+                                </div>
+                                <div class="product_meta">
+                                    <span>
+                                        Category: <a asp-area="" asp-controller="Product" asp-action="ShopCategory">
+                                            @Model.CategoryName
+                                        </a>
+                                    </span>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="product_d_info mb-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="product_d_inner">
+                            <div class="product_info_button">
+                                <ul class="nav" role="tablist">
+                                    <li><a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false" onclick="switchTab('info')">Description</a></li>
+                                    <li><a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet" aria-selected="false" onclick="switchTab('sheet')">Specification</a></li>
+                                    <li><a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false" onclick="switchTab('reviews')">Reviews</a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="info" role="tabpanel">
+                                    <div class="product_info_content">
+                                        <p>@Model.LongtDesc</p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade " id="sheet" role="tabpanel">
+                                    <div class="product_info_content">
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="reviews" role="tabpanel">
+                                    <div class="reviews_wrapper">
+                                        <h2>1 review for Dell laptop</h2>
+                                        <div class="reviews_comment_box">
+                                            <div class="comment_thmb">
+                                                <img src="./images/user.png" alt="">
+                                            </div>
+                                            <div class="comment_text">
+                                                <div class="reviews_meta">
+                                                    <div class="star_rating">
+                                                        <ul>
+                                                            <li class="star"><i class="fa fa-star"></i></a></li>
+                                                            <li class="star"><i class="fa fa-star"></i></a></li>
+                                                            <li class="star"><i class="fa fa-star"></i></a></li>
+                                                            <li class="star"><i class="fa fa-star"></i></a></li>
+                                                            <li><i class="fa fa-star"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <p><strong>admin </strong>- Dec. 2024</p>
+                                                    <span>www</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="comment_title">
+                                            <h2>Add a review </h2>
+                                        </div>
+
+
+                                        <div class="self_ratting mb-10">
+                                            <h3>Your rating</h3>
+                                            <div id="rating_bar">
+                                                <span id="rate_1"></span>
+                                                <span id="rate_2"></span>
+                                                <span id="rate_3"></span>
+                                                <span id="rate_4"></span>
+                                                <span id="rate_5"></span>
+                                            </div>
+                                        </div>
+                                        <form action="">
+                                            <div class="input-wrapper">
+                                                <input type="text" name="name" id="name" required>
+                                                <label for="name">Name</label>
+                                            </div>
+                                            <div class="input-wrapper">
+                                                <input type="text" name="subject" id="subject" required>
+                                                <label for="subject">Subject</label>
+                                            </div>
+                                            <div class="input-wrapper">
+                                                <textarea name="message" id="message" rows="5" required></textarea>
+                                                <label for="message">Message</label>
+                                            </div>
+                                            <input type="submit" value="Send">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>

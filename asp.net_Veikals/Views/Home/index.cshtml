@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "Sākums";
+}
+<body id="prod_bg">
+    <Section class="parallax-container">
+        <div class="banner">
+            <h1>Modernais-IT</h1>
+            <h2>Jūsu palīgs IT sistēmu modernizācijā</h2>
+        </div>
+
+        <div id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="content1">
+                            <div class="image1" onclick="location.href='@Url.Action("ShopCategory", "Prodcut")'" style="cursor: pointer;">
+                                <img src="~/images/ci2.jpg" alt="">
+                            </div>
+                            <div class="text">
+                                <p>Jauniem klientiem pirmā konsultācija <b>pilnīgi par brīvu!</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="content1">
+                            <div class="image1" onclick="location.href='@Url.Action("ShopCategory", "Prodcut")'" style="cursor: pointer;">
+                                <img src="~/images/ci4.jpg" alt="">
+                            </div>
+                            <div class="text">
+                                <p>Nepieciešama papildus palīdzība? Ar mūsu tiešsaistes rīku vari iesniegt pieteikumu vai jautājumu par savu IT sistēmas nomaiņu.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="content1">
+                            <div class="image1" onclick="location.href='@Url.Action("Builder", "Home")'" style="cursor: pointer;">
+                                <img src="~/images/ci3.jpeg" alt="">
+                            </div>
+                            <div class="text">
+                                <p>Vairāk par mājasdarbiem.</p>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </Section>
+    
+    <section class="buffer"></section>
+
+    <Section class="parallax-container parallax-container2"> 
+        <div class="banner">
+            <h1>Sadarbībbas partneri</h1>
+            <h2>Mūsu pakalpojumus un Jūsu IT risinājumus palīdz realizēt mūsu sadarbības partneri:</h2>
+        </div>
+        <div id="main">
+            <div class="slider">
+                <div class="slide-track">
+                    <div class="slide">
+                        <img src="~/icons/tet.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/lmt.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/apple-logo.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/mk.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/dell.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/hp.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/lenovo.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/lg.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/microsoft.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/samsung.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/tet.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/lmt.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/apple-logo.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/mk.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/dell.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/hp.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/lenovo.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/lg.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/microsoft.png" height="100" width="250" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/icons/samsung.png" height="100" width="250" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="banner">
+            <h3>Some listed products are made by brands not listed in this section, but all products on our site have the same support regardles of the region or brand. All prices shown for products include taxes, shipping prices may vary depending on shipping location and are not included on listed prices in the shop.</h3>
+        </div>
+    </Section>
+
+    <section class="buffer">
+        <h1 class="buf1">Leave us a message:</h1>
+    </section>
+
+    <Section class="parallax-container parallax-container3"> 
+        <div class="banner">
+            <h2><b>Customer service is one of our top priorities, becouse of this commitment we offer any registered or unregistered user of our website the option to directly message us regarding any questions or products. Just leave a name, a subject and you'r contact information in the message we will respond as fast as possible.</b></h2>
+        </div>
+        <div id="main">
+            <form action="">
+                <div class="input-wrapper">
+                    <input type="text" name="name" id="name" required>
+                    <label for="name">Name</label>
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" name="subject" id="subject" required>
+                    <label for="subject">Subject</label>
+                </div>
+                <div class="input-wrapper">
+                    <textarea name="message" id="message" rows="5" required></textarea>
+                    <label for="message">Message</label>
+                </div>
+                <input type="submit" value="Send">
+            </form>
+        </div>        
+    </section>
+</body>
+
+

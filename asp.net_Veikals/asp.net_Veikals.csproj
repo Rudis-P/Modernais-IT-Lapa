@@ -1,0 +1,95 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\images\default-image.jpg" />
+    <Content Remove="wwwroot\images\prod1_additional2 - Copy.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="wwwroot\icons\acer.png" />
+    <None Include="wwwroot\icons\aliens.png" />
+    <None Include="wwwroot\icons\apple-logo.png" />
+    <None Include="wwwroot\icons\asus.png" />
+    <None Include="wwwroot\icons\dell.png" />
+    <None Include="wwwroot\icons\hp.png" />
+    <None Include="wwwroot\icons\lenovo.png" />
+    <None Include="wwwroot\icons\lg.png" />
+    <None Include="wwwroot\icons\microsoft.png" />
+    <None Include="wwwroot\icons\samsung.png" />
+    <None Include="wwwroot\images\bg1.jpg" />
+    <None Include="wwwroot\images\bg10.jpg" />
+    <None Include="wwwroot\images\bg11.jpg" />
+    <None Include="wwwroot\images\bg2.jpg" />
+    <None Include="wwwroot\images\bg3.jpg" />
+    <None Include="wwwroot\images\bg4.jpg" />
+    <None Include="wwwroot\images\bg5.webp" />
+    <None Include="wwwroot\images\bg6.jpg" />
+    <None Include="wwwroot\images\bg7.webp" />
+    <None Include="wwwroot\images\bg8.jpg" />
+    <None Include="wwwroot\images\bg9.jpg" />
+    <None Include="wwwroot\images\cat1.png" />
+    <None Include="wwwroot\images\cat_2.jpg" />
+    <None Include="wwwroot\images\cat_3.png" />
+    <None Include="wwwroot\images\cat_4.png" />
+    <None Include="wwwroot\images\cat_5.png" />
+    <None Include="wwwroot\images\ci2.jpg" />
+    <None Include="wwwroot\images\ci3.jpeg" />
+    <None Include="wwwroot\images\ci4.jpg" />
+    <None Include="wwwroot\images\cpu_1.png" />
+    <None Include="wwwroot\images\cpu_2.png" />
+    <None Include="wwwroot\images\frame1.png" />
+    <None Include="wwwroot\images\frame2.png" />
+    <None Include="wwwroot\images\frame2_1.png" />
+    <None Include="wwwroot\images\gpu_1.png" />
+    <None Include="wwwroot\images\gpu_2.png" />
+    <None Include="wwwroot\images\prod1.jpg" />
+    <None Include="wwwroot\images\prod10.webp" />
+    <None Include="wwwroot\images\prod11.webp" />
+    <None Include="wwwroot\images\prod12.jpg" />
+    <None Include="wwwroot\images\default-image.jpg" />
+    <None Include="wwwroot\images\prod1_additional.jpg" />
+    <None Include="wwwroot\images\prod1_additional2 - Copy.png" />
+    <None Include="wwwroot\images\prod1_additional2.png" />
+    <None Include="wwwroot\images\prod2.jpg" />
+    <None Include="wwwroot\images\prod3.jpg" />
+    <None Include="wwwroot\images\prod4.jpg" />
+    <None Include="wwwroot\images\prod5.jpg" />
+    <None Include="wwwroot\images\prod6.webp" />
+    <None Include="wwwroot\images\prod7.webp" />
+    <None Include="wwwroot\images\prod8.webp" />
+    <None Include="wwwroot\images\prod9.webp" />
+    <None Include="wwwroot\images\ssd_1.png" />
+    <None Include="wwwroot\images\ssd_2.png" />
+    <None Include="wwwroot\images\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Database\" />
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Contacts";
+}
+<body id="cont_bg">
+
+    <div class="banner">
+        <h1>BuildIT Computers</h1>
+        <h2>Information</h2>
+    </div>
+
+    <div id="main_cont">
+        <h4 class="text-center">Contacts and Address</h4>
+        <hr>
+        <div class="row">
+            <div class="col-sm-8">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d543.8996180407047!2d24.117595169682907!3d56.95568032963491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecfce7035a3a5%3A0xdbfd94edab58384!2sDzirnavu%20iela%2052%2C%20Centra%20rajons%2C%20R%C4%ABga%2C%20LV-1010!5e0!3m2!1slv!2slv!4v1700577767847!5m2!1slv!2slv"></iframe>
+            </div>
+
+            <div class="col-sm-4" id="contact2">
+                <h5>General contacts</h5>
+                <hr>
+                <h4 class="pt-2">Adress</h4>
+                <i class="fas fa-globe"></i> Dzirnavu iela 52, Centra rajons, Rīga, LV-1010<br>
+                <h4 class="pt-2">Phone</h4>
+                <i class="fas fa-phone"></i>26154826<br>
+                <i class="fas fa-phone"></i>62519471<br>
+                <i class="fab fa-whatsapp"></i>26154827<br>
+                <h4 class="pt-2">Email</h4>
+                <i class="fa fa-envelope"></i> <a href="">buildit@mail.com</a><br>
+                <h4></h4>
+            </div>
+        </div>
+        <h2>Want more info? Contact us directly:</h2>
+        <form action="">
+            <div class="input-wrapper">
+                <input type="text" name="name" id="name" required>
+                <label for="name">Name</label>
+            </div>
+            <div class="input-wrapper">
+                <input type="text" name="subject" id="subject" required>
+                <label for="subject">Subject</label>
+            </div>
+            <div class="input-wrapper">
+                <textarea name="message" id="message" rows="5" required></textarea>
+                <label for="message">Message</label>
+            </div>
+            <input type="submit" value="Send">
+        </form>
+    </div>
+
+</body>

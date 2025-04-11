@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Admin Account";
+}
+
+@model asp.net_Veikals.Models.ProductViewModel
+
+
+<body>
+
+    <div class="banner">
+        <h1>BuildIT Computers</h1>
+        <h2>Support services:</h2>
+    </div>
+
+    <div id="sup_main">
+        <div class="group">
+            <h2>Hello Administrator @ViewData["UserName"]</h2>
+            <p>Welcome to your admin account page.</p>
+        </div>
+
+        <div class="group">
+            <p>Add a product: </p>
+            <h2>
+                <p> <a href="@Url.Action("AddProduct", "Product")">Add New Product</a></p>
+            </h2>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Account";
+
+}
+@model asp.net_Veikals.Models.LoginSignupViewModel
+<body>
+    <div class="banner">
+        <h1>BuildIT Computers</h1>
+        <h2>Mix and Match</h2>
+    </div>
+    <div id="main_acc">
+        <div class="wrapper">
+            <div class="title-text">
+                <div class="title login">Login Form</div>
+                <div class="title signup">Signup Form</div>
+            </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-container">
+                <div class="slide-controls">
+                    <input type="radio" name="slide" id="login" checked>
+                    <input type="radio" name="slide" id="signup">
+                    <label for="login" class="slide login">Login</label>
+                    <label for="signup" class="slide signup">Signup</label>
+                    <div class="slider-tab"></div>
+                </div>
+                <div class="form-inner">
+                    <form method="post" class="login" id="loginForm">
+                        <div class="field">
+                            <input asp-for="LoginModel.Email" placeholder="Email Address" id="emailInput" required />
+                        </div>
+                        <div class="field">
+                            <input asp-for="LoginModel.Password" type="password" placeholder="Password" required />
+                        </div>
+                        <div class="field btn">
+                            <input type="submit" asp-action="Login" asp-controller="Account" value="Login" id="loginSubmit" />
+                        </div>
+                        <div class="signup-link">Not a member? <a href="">Signup now</a></div>
+                    </form>
+
+                    <form method="post" class="signup" id="signupForm">
+                        <div class="field">
+                            <input asp-for="SignupModel.Email" placeholder="Email Address" required />
+                        </div>
+                        <div class="field">
+                            <input asp-for="SignupModel.Password" type="password" placeholder="Password" required />
+                        </div>
+                        <div class="field">
+                            <input asp-for="SignupModel.ConfirmPassword" type="password" placeholder="Confirm password" required />
+                        </div>
+                        <div class="field btn">
+                            <input type="submit" asp-action="Signup" asp-controller="Account" value="Signup" id="signupSubmit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>

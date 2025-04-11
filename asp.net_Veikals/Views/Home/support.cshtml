@@ -1,0 +1,151 @@
+﻿@{
+    ViewData["Title"] = "Support";
+}
+<body>
+
+    <div class="banner">
+        <h1>BuildIT Computers</h1>
+        <h2>Support services:</h2>
+    </div>
+
+    <div id="sup_main">
+        <div class="group">
+            <header class="header">
+                <h1 id="title" class="text-center">Product support form</h1>
+                <p id="description" class="description text-center">
+                    Please enter all relevant data into the form below to ensure we fully understand the problem. You are guaranteed a response within 3-4 buisiness days of submitting the form.
+                    Ensure that all information is accurate.
+                </p>
+            </header>
+            <form id="survey-form">
+                <div class="form-group">
+                    <strong>
+                        <p>Enter your info:</p>
+                        <label id="name-label" for="name">Name</label>
+                    </strong>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required />
+                </div>
+                <div class="form-group">
+                    <strong>
+                        <label id="email-label" for="email">Email</label>
+                    </strong>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Enter your Email" required />
+                </div>
+                <div class="form-group">
+                    <strong>
+                        <label id="number-label" for="number">Product <span class="clue">(optional)</span></label>
+                    </strong>
+                    <input type="text" name="Product" id="number" min="1" max="99" class="form-control" placeholder="Product" />
+                </div>
+                <div class="form-group">
+                    <strong>
+                        <p class="page-header">Please describe your situation, where 1 is bad, 10 is good</p>
+                        <div class="chart-scale">
+                            <button class="btn btn-scale btn-scale-asc-1" type="button">1</button>
+                            <button class="btn btn-scale btn-scale-asc-2" type="button">2</button>
+                            <button class="btn btn-scale btn-scale-asc-3" type="button">3</button>
+                            <button class="btn btn-scale btn-scale-asc-4" type="button">4</button>
+                            <button class="btn btn-scale btn-scale-asc-5" type="button">5</button>
+                            <button class="btn btn-scale btn-scale-asc-6" type="button">6</button>
+                            <button class="btn btn-scale btn-scale-asc-7" type="button">7</button>
+                            <button class="btn btn-scale btn-scale-asc-8" type="button">8</button>
+                            <button class="btn btn-scale btn-scale-asc-9" type="button">9</button>
+                            <button class="btn btn-scale btn-scale-asc-10" type="button">10</button>
+                            <hr />
+                        </div>
+                        <div class="form-group">
+                            <p>Which type of support are you in need of?</p>
+                            <select id="dropdown" name="role" class="form-control" required>
+                                <option>Select support type</option>
+                                <option value="Student">Technical</option>
+                                <option value="Working">Shop</option>
+                                <option value="Bussiness">Laptop</option>
+                                <option value="Home maker">Instructions</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <p>Select your prefered contact type</p>
+                            <label>
+                                <input type="radio" name="gender" value="Male" class="input-radio" />Call
+                            </label>
+                            <label>
+                                <input type="radio" name="gender" value="Female" class="input-radio" />Video
+                            </label>
+                            <label>
+                                <input type="radio" name="gender" value="Other" class="input-radio" />E-mail
+                            </label>
+                            <label>
+                                <input type="radio" name="gender" value="Male" class="input-radio" />In-person
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <p>Will you be able to follow given instruction in order to fix the problem?</p>
+                            <label>
+                                <input type="radio" name="user-recommend" value="Definitely" class="input-radio" />
+                                Definitely
+                            </label>
+                            <br></br>
+                            <label>
+                                <input type="radio" name="user-recommend" value="Maybe" class="input-radio" />Maybe
+                            </label>
+                            <br></br>
+                            <label>
+                                <input type="radio" name="user-recommend" value="Not sure" class="input-radio" />Not sure
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <p>What kind of problems have you encountered?<span class="clue">(Check all that apply)</span></p>
+                            <label>
+                                <input name="prefer" value="Talcum powder" type="checkbox" class="input-checkbox" />Product not working
+                            </label>
+                            <label>
+                                <input name="prefer" value="Perfume" type="checkbox" class="input-checkbox" />Damadged goods
+                            </label>
+                            <label>
+                                <input name="prefer" value="Bathing soap" type="checkbox" class="input-checkbox" />Bad service
+                            </label>
+                            <label>
+                                <input name="prefer" value="Washing soap" type="checkbox" class="input-checkbox" />Incorect order
+                            </label>
+                            <label>
+                                <input name="prefer" value="sanitizer" type="checkbox" class="input-checkbox" />Shop not working
+                            </label>
+                            <label>
+                                <input name="prefer" value="Shampoo" type="checkbox" class="input-checkbox" />Technical problems
+                            </label>
+                            <label>
+                                <input name="prefer" value="face-wash" type="checkbox" class="input-checkbox" />Other
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <p>Add any comments that would help</p>
+                            <textarea id="comments" class="input-textarea form-control" name="comment" placeholder="Enter your comment here..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <p>Add any pictures if needed</p>
+                            <div class="file-upload">
+                                <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+
+                                <div class="image-upload-wrap">
+                                    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                    <div class="drag-text">
+                                        <h3>Drag and drop a file or select add Image</h3>
+                                    </div>
+                                </div>
+                                <div class="file-upload-content">
+                                    <img class="file-upload-image" src="#" alt="your image" />
+                                    <div class="image-title-wrap">
+                                        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" id="submit" value="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</body>
