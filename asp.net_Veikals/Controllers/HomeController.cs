@@ -1,5 +1,6 @@
 ﻿using asp.net_Veikals.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace asp.net_Veikals.Controllers
@@ -7,10 +8,12 @@ namespace asp.net_Veikals.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly AppDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, AppDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult index()
@@ -28,9 +31,23 @@ namespace asp.net_Veikals.Controllers
             return View("~/Views/Home/Account/user_acc.cshtml");
         }
 
-        public IActionResult admin_acc()
+        public async Task<IActionResult> admin_acc()
         {
-            return View("~/Views/Home/Account/admin_acc.cshtml");
+            var products = _context.Products
+            .Include(p => p.Images)
+            .ToList();
+
+            var productViewModels = products.Select(product => new ProductViewModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Category = product.Category.ToString(),
+                ShortDesc = product.ShortDesc.ToString(),
+                MainImageUrl = product.Images != null && product.Images.Any()
+                                ? product.Images.FirstOrDefault(img => img.IsMainImage)?.Url ?? "/images/default-image.jpg"
+                                : "/images/default-image.jpg"
+            }).ToList();
+            return View("~/Views/Home/Account/admin_acc.cshtml", productViewModels);
         }
 
         public IActionResult AddProduct()

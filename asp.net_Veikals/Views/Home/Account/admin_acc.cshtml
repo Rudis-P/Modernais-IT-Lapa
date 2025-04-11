@@ -2,21 +2,74 @@
     ViewData["Title"] = "Admin Account";
 }
 
-@model asp.net_Veikals.Models.ProductViewModel
-
+@model List<ProductViewModel>
 
 <body>
 
     <div class="banner">
-        <h1>BuildIT Computers</h1>
-        <h2>Support services:</h2>
+        <h1>Modernais-IT</h1>
+        <h2>Administratora lapa:</h2>
     </div>
 
     <div id="sup_main">
         <div class="group">
-            <h2>Hello Administrator @ViewData["UserName"]</h2>
-            <p>Welcome to your admin account page.</p>
+            <h2>Sveiki administrator @ViewData["UserName"]</h2>
         </div>
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'Blogs')">Raksti</button>
+            <button class="tablinks" onclick="openCity(event, 'Messages')">Ziņas</button>
+            <button class="tablinks" onclick="openCity(event, 'Users')">Lietotāji</button>
+        </div>
+
+        <!-- Tab content -->
+        <div id="Blogs" class="tabcontent">
+            <div class="admin-view2">
+                <h2>Raksti</h2>
+                <h2 class="admin-view3"><a class="unstyled-link" href="@Url.Action("AddProduct", "Product")"><b>+</b>Pievienot jaunu rakstu</a></h2>
+            </div>
+            
+            <div class="column trending-box">
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var product in Model)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Rendering Product: {product.Name}, MainImageUrl: {product.MainImageUrl}");
+                            <div class="item">
+                                <div class="thumb">
+                                    <!-- Product Image -->
+                                    <a href="@Url.Action("ProductDetails", "Product", new { id = product.Id })">
+                                        <img src="@Url.Content(product.MainImageUrl)" alt="@product.Name">
+                                    </a>
+                                </div>
+                            <div class="down-content admin-view1">
+                                    <!-- Category -->
+                                    <h4><b>@product.Name</b>, @product.Category </h4>
+                                    <span class="category">@product.ShortDesc</span>
+                                    <!-- Link to Product Details Page -->
+                                    <a href="@Url.Action("ProductDetails", "Product", new { id = product.Id })">
+                                        <i class="fa fa-shopping-bag"></i>
+                                    </a>
+                                </div>
+                            </div>
+                    }
+                }
+                else
+                {
+                    <p>Pašlaik nav neviena raksta.</p>  <!-- If Model is null or empty -->
+                }
+            </div>
+        </div>
+
+        <div id="Messages" class="tabcontent">
+            <h3>Ziņas</h3>
+            <p>Paris is the capital of France.</p>
+        </div>
+
+        <div id="Users" class="tabcontent">
+            <h3>Lietotāji</h3>
+            <p>Tokyo is the capital of Japan.</p>
+        </div>
+
 
         <div class="group">
             <p>Add a product: </p>
@@ -24,5 +77,36 @@
                 <p> <a href="@Url.Action("AddProduct", "Product")">Add New Product</a></p>
             </h2>
         </div>
+
     </div>
 </body>
+
+
+@section scripts{
+    <script>
+
+          function openCity(evt, cityName) {
+          // Declare all variables
+          var i, tabcontent, tablinks;
+
+          // Get all elements with class="tabcontent" and hide them
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+
+          // Get all elements with class="tablinks" and remove the class "active"
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+
+          // Show the current tab, and add an "active" class to the button that opened the tab
+          document.getElementById(cityName).style.display = "block";
+          evt.currentTarget.className += " active";
+        }
+        window.onload = function () {
+            document.querySelector(".tablinks").click();
+        };
+    </script>
+}

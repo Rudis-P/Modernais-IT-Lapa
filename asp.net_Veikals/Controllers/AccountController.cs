@@ -17,11 +17,13 @@ namespace asp.net_Veikals.Controllers
 
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly AppDbContext _context;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, AppDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
         // Login Action
@@ -160,9 +162,24 @@ namespace asp.net_Veikals.Controllers
 
             ViewData["IsAdmin"] = user.IsAdmin;
 
+            var products = _context.Products
+                .Include(p => p.Images)
+                .ToList();
+
+            var productViewModels = products.Select(product => new ProductViewModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Category = product.Category.ToString(),
+                ShortDesc = product.ShortDesc.ToString(),
+                MainImageUrl = product.Images != null && product.Images.Any()
+                                ? product.Images.FirstOrDefault(img => img.IsMainImage)?.Url ?? "/images/default-image.jpg"
+                                : "/images/default-image.jpg"
+            }).ToList();
+
             if (user.IsAdmin)
             {
-                return View("~/Views/Home/Account/admin_acc.cshtml");
+                return View("~/Views/Home/Account/admin_acc.cshtml", productViewModels);
             }
             else
             {

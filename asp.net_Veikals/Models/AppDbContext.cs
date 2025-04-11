@@ -12,6 +12,7 @@ namespace asp.net_Veikals.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
     }
 }

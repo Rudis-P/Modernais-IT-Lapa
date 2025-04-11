@@ -120,31 +120,30 @@
             </div>
         </div>
         <div class="banner">
-            <h3>Some listed products are made by brands not listed in this section, but all products on our site have the same support regardles of the region or brand. All prices shown for products include taxes, shipping prices may vary depending on shipping location and are not included on listed prices in the shop.</h3>
         </div>
     </Section>
 
     <section class="buffer">
-        <h1 class="buf1">Leave us a message:</h1>
+        <h1 class="buf1">Atstājiet mums ziņu:</h1>
     </section>
 
     <Section class="parallax-container parallax-container3"> 
         <div class="banner">
-            <h2><b>Customer service is one of our top priorities, becouse of this commitment we offer any registered or unregistered user of our website the option to directly message us regarding any questions or products. Just leave a name, a subject and you'r contact information in the message we will respond as fast as possible.</b></h2>
+            <h2><b>Klientu apkalpošana ir viena no mūsu galvenajām prioritātēm, tāpēc mēs piedāvājam jebkuram reģistrētam vai nereģistrētam mūsu vietnes lietotājam iespēju tieši nosūtīt mums ziņojumu par jautājumiem vai pakalpojumiem. Vienkārši ziņojumā ierakstiet vārdu, tēmu un savu kontaktinformāciju, mēs atbildēsim, cik ātri vien iespējams.</b></h2>
         </div>
         <div id="main">
-            <form action="">
+            <form method="post" asp-controller="Message" asp-action="Submit">
                 <div class="input-wrapper">
                     <input type="text" name="name" id="name" required>
-                    <label for="name">Name</label>
+                    <label for="name">Vārds</label>
                 </div>
                 <div class="input-wrapper">
                     <input type="text" name="subject" id="subject" required>
-                    <label for="subject">Subject</label>
+                    <label for="subject">Temats</label>
                 </div>
                 <div class="input-wrapper">
                     <textarea name="message" id="message" rows="5" required></textarea>
-                    <label for="message">Message</label>
+                    <label for="message">Ziņas teksts</label>
                 </div>
                 <input type="submit" value="Send">
             </form>
@@ -152,4 +151,13 @@
     </section>
 </body>
 
-
+@section Scripts {
+    <script>
+        @if (TempData["MessageSent"] != null)
+        {
+            <text>
+                alert("Ziņojums ir veiksmīgi nosūtīts!!");
+            </text>
+        }
+    </script>
+}

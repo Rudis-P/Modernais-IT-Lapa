@@ -63,7 +63,6 @@ namespace asp.net_Veikals.Controllers
                     System.Diagnostics.Debug.WriteLine($"Name: {model.Name}");
                     System.Diagnostics.Debug.WriteLine($"ShortDesc: {model.ShortDesc}");
                     System.Diagnostics.Debug.WriteLine($"LongDesc: {model.LongDesc}");
-                    System.Diagnostics.Debug.WriteLine($"Colors: {model.Colors}");
                     System.Diagnostics.Debug.WriteLine($"Price: {model.Price}");
                     System.Diagnostics.Debug.WriteLine($"Category: {model.Category}");
                     System.Diagnostics.Debug.WriteLine($"Images count: {images?.Count}");
@@ -74,7 +73,10 @@ namespace asp.net_Veikals.Controllers
                         ShortDesc = model.ShortDesc,
                         LongDesc = model.LongDesc,
                         Price = model.Price,
-                        Category = (Category)Enum.Parse(typeof(Category), model.Category)
+                        Category = (Category)Enum.Parse(typeof(Category), model.Category),
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow,
+                        Slug = GenerateSlug(model.Name)
                     };
 
                     _context.Products.Add(product);
@@ -110,12 +112,20 @@ namespace asp.net_Veikals.Controllers
                     await _context.SaveChangesAsync(); 
                     System.Diagnostics.Debug.WriteLine("Images saved successfully.");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("admin_acc", "Home");
                 }
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine($"Error: {ex.Message}");
                     System.Diagnostics.Debug.WriteLine($"StackTrace: {ex.StackTrace}");
+                    if (ex.InnerException != null)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                        if (ex.InnerException.InnerException != null)
+                        {
+                            System.Diagnostics.Debug.WriteLine($"Deeper Inner: {ex.InnerException.InnerException.Message}");
+                        }
+                    }
                     ModelState.AddModelError("", "An error occurred while processing your request.");
                 }
             }
@@ -160,7 +170,22 @@ namespace asp.net_Veikals.Controllers
 
 
 
-
+        string GenerateSlug(string text)
+        {
+            return text.ToLower()
+                .Replace(" ", "-")
+                .Replace(".", "")
+                .Replace(",", "")
+                .Replace(":", "")
+                .Replace(";", "")
+                .Replace("!", "")
+                .Replace("?", "")
+                .Replace("/", "")
+                .Replace("\\", "")
+                .Replace("\"", "")
+                .Replace("'", "")
+                .Replace("&", "and");
+        }
 
 
 
