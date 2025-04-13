@@ -2,7 +2,7 @@
     ViewData["Title"] = "Admin Account";
 }
 
-@model List<ProductViewModel>
+@model AdminDashboardViewModel
 
 <body>
 
@@ -29,28 +29,42 @@
             </div>
             
             <div class="column trending-box">
-                @if (Model != null && Model.Any())
+                @if (Model.Products != null && Model.Products.Any())
                 {
-                    @foreach (var product in Model)
+                    @foreach (var product in Model.Products)
                     {
                         System.Diagnostics.Debug.WriteLine($"Rendering Product: {product.Name}, MainImageUrl: {product.MainImageUrl}");
-                            <div class="item">
+                        <div class="item admin-view5">
+                            <div class="left-group">
                                 <div class="thumb">
-                                    <!-- Product Image -->
                                     <a href="@Url.Action("ProductDetails", "Product", new { id = product.Id })">
                                         <img src="@Url.Content(product.MainImageUrl)" alt="@product.Name">
                                     </a>
                                 </div>
-                            <div class="down-content admin-view1">
-                                    <!-- Category -->
+                                <div class="down-content admin-view1">
                                     <h4><b>@product.Name</b>, @product.Category </h4>
                                     <span class="category">@product.ShortDesc</span>
-                                    <!-- Link to Product Details Page -->
                                     <a href="@Url.Action("ProductDetails", "Product", new { id = product.Id })">
                                         <i class="fa fa-shopping-bag"></i>
                                     </a>
                                 </div>
                             </div>
+                            <div class="down-content admin-view4">
+                                <a href="@Url.Action("EditProduct", "Product", new { id = product.Id })" class="edit-icon-wrapper">
+                                    <span class="material-symbols-outlined">
+                                        edit_note
+                                    </span>
+                                </a>
+                                <a href="@Url.Action("DeleteProduct", "Product", new { id = product.Id })"
+                                   class="edit-icon-wrapper"
+                                   onclick="return confirm('Vai tiešām vēlies dzēst šo rakstu?');">
+                                    <span class="material-symbols-outlined">
+                                        delete_forever
+                                    </span>
+                                </a>
+                            </div>
+                            </div>
+                        
                     }
                 }
                 else
@@ -61,21 +75,45 @@
         </div>
 
         <div id="Messages" class="tabcontent">
-            <h3>Ziņas</h3>
-            <p>Paris is the capital of France.</p>
+            <div class="admin-view2">
+                <h2>Ziņas</h2>
+            </div>
+            <div class="column trending-box">
+                @if (Model.Messages != null && Model.Messages.Any())
+                {
+                    @foreach (var msg in Model.Messages)
+                    {
+                        <div class="item admin-view5">
+                            <div class="left-group">
+                                <div class="down-content admin-view1">
+                                    <h4><b>@msg.Name</b></h4>
+                                    <span class="category">@msg.Subject</span>
+                                    <p>@msg.Content</p>
+                                </div>
+                            </div>
+                            <div class="down-content admin-view4">
+                                <a href="@Url.Action("DeleteMessage", "Message", new { id = msg.Id })"
+                                   class="edit-icon-wrapper"
+                                   onclick="return confirm('Vai tiešām vēlies dzēst šo ziņu?');">
+                                    <span class="material-symbols-outlined">
+                                        delete_forever
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>Pašlaik nav nevienas ziņas.</p>
+                }
+            </div>
+        </div>
         </div>
 
         <div id="Users" class="tabcontent">
             <h3>Lietotāji</h3>
             <p>Tokyo is the capital of Japan.</p>
-        </div>
-
-
-        <div class="group">
-            <p>Add a product: </p>
-            <h2>
-                <p> <a href="@Url.Action("AddProduct", "Product")">Add New Product</a></p>
-            </h2>
         </div>
 
     </div>

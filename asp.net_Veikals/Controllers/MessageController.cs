@@ -1,6 +1,7 @@
 ﻿using asp.net_Veikals.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace asp.net_Veikals.Controllers
 {
@@ -39,5 +40,25 @@ namespace asp.net_Veikals.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> AdminMessages()
+        {
+            var messages = await _context.Messages.ToListAsync();
+            return View(messages);
+        }
+
+        public async Task<IActionResult> DeleteMessage(int id)
+        {
+            var message = await _context.Messages.FindAsync(id);
+            if (message == null) return NotFound();
+
+            _context.Messages.Remove(message);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("admin_acc", "Home");
+        }
+
+
+
     }
 }

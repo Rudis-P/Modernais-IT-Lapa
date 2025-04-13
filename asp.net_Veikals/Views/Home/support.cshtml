@@ -1,11 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Support";
+    ViewData["Title"] = "Atbalsts";
 }
 <body>
 
     <div class="banner">
-        <h1>BuildIT Computers</h1>
-        <h2>Support services:</h2>
+        <h1>Modernais-IT</h1>
+        <h2>Atbalsta forma:</h2>
     </div>
 
     <div id="sup_main">
@@ -13,33 +13,33 @@
             <header class="header">
                 <h1 id="title" class="text-center">Product support form</h1>
                 <p id="description" class="description text-center">
-                    Please enter all relevant data into the form below to ensure we fully understand the problem. You are guaranteed a response within 3-4 buisiness days of submitting the form.
-                    Ensure that all information is accurate.
+                    Lūdzu, ievadiet visus attiecīgos datus tālāk esošajā veidlapā, lai nodrošinātu, ka mēs pilnībā izprotam problēmu. Garantējam atbildi 3–4 darba dienu laikā pēc veidlapas iesniegšanas.
+                    Pārliecinieties, vai visa informācija ir precīza.
                 </p>
             </header>
             <form id="survey-form">
                 <div class="form-group">
                     <strong>
-                        <p>Enter your info:</p>
-                        <label id="name-label" for="name">Name</label>
+                        <p>Ievadiet informāciju:</p>
+                        <label id="name-label" for="name">Vārds</label>
                     </strong>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required />
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Ievadiet savu vārdu" required />
                 </div>
                 <div class="form-group">
                     <strong>
-                        <label id="email-label" for="email">Email</label>
+                        <label id="email-label" for="email">E-pasts</label>
                     </strong>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Enter your Email" required />
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Ievadiet savu e-pastu" required />
                 </div>
                 <div class="form-group">
                     <strong>
-                        <label id="number-label" for="number">Product <span class="clue">(optional)</span></label>
+                        <label id="number-label" for="number">Pakalpojums <span class="clue">(neobligāts)</span></label>
                     </strong>
-                    <input type="text" name="Product" id="number" min="1" max="99" class="form-control" placeholder="Product" />
+                    <input type="text" name="Product" id="number" min="1" max="99" class="form-control" placeholder="Pakalpojums" />
                 </div>
                 <div class="form-group">
                     <strong>
-                        <p class="page-header">Please describe your situation, where 1 is bad, 10 is good</p>
+                        <p class="page-header">Lūdzu aprakstie pašreizējo situāciju:</p>
                         <div class="chart-scale">
                             <button class="btn btn-scale btn-scale-asc-1" type="button">1</button>
                             <button class="btn btn-scale btn-scale-asc-2" type="button">2</button>
@@ -54,94 +54,82 @@
                             <hr />
                         </div>
                         <div class="form-group">
-                            <p>Which type of support are you in need of?</p>
+                            <p>Par kādu pakalpojuma veidu interesējaties?</p>
                             <select id="dropdown" name="role" class="form-control" required>
-                                <option>Select support type</option>
-                                <option value="Student">Technical</option>
-                                <option value="Working">Shop</option>
-                                <option value="Bussiness">Laptop</option>
-                                <option value="Home maker">Instructions</option>
+                                <option>Izvēlaties veidu</option>
+                                <option value="Student">Uzņemuma iekārtošana</option>
+                                <option value="Working">Mājaslapas izveide</option>
+                                <option value="Bussiness">Biroja tehnikas atjaunošana</option>
+                                <option value="Home maker">Pilna IT sistēmu nomaiņa</option>
+                                <option value="Home maker">Programmatūras nomaiņa</option>
+                                <option value="Home maker">Konsultācija</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <p>Select your prefered contact type</p>
+                            <p>Izvēltaties kontakta veidu</p>
                             <label>
-                                <input type="radio" name="gender" value="Male" class="input-radio" />Call
+                                <input type="radio" name="gender" value="Male" class="input-radio" />Zvans
                             </label>
                             <label>
-                                <input type="radio" name="gender" value="Female" class="input-radio" />Video
+                                <input type="radio" name="gender" value="Female" class="input-radio" />Video zvans
                             </label>
                             <label>
-                                <input type="radio" name="gender" value="Other" class="input-radio" />E-mail
+                                <input type="radio" name="gender" value="Other" class="input-radio" />E-pasts
                             </label>
                             <label>
-                                <input type="radio" name="gender" value="Male" class="input-radio" />In-person
+                                <input type="radio" name="gender" value="Male" class="input-radio" />Izsauciens
+                            </label>
+                        </div>
+                       
+                        <div class="form-group">
+                            <p>Ar kādām problēmām esat saskārušies?<span class="clue">(atzīmēt visus kas attiecas)</span></p>
+                            <label>
+                                <input name="prefer" value="Talcum powder" type="checkbox" class="input-checkbox" />Produkta ražošanas ātrums ir nepietiekams
+                            </label>
+                            <label>
+                                <input name="prefer" value="Perfume" type="checkbox" class="input-checkbox" />Nepietiekami IT resursi
+                            </label>
+                            <label>
+                                <input name="prefer" value="Bathing soap" type="checkbox" class="input-checkbox" />Lēns vai neadekvāts internets
+                            </label>
+                            <label>
+                                <input name="prefer" value="Washing soap" type="checkbox" class="input-checkbox" />Biroja aparatūras vecums
+                            </label>
+                            <label>
+                                <input name="prefer" value="sanitizer" type="checkbox" class="input-checkbox" />Nespēja attīstīt ražošanu
+                            </label>
+                            <label>
+                                <input name="prefer" value="Shampoo" type="checkbox" class="input-checkbox" />Biežas tehniskās problēmas
+                            </label>
+                            <label>
+                                <input name="prefer" value="face-wash" type="checkbox" class="input-checkbox" />Cits
                             </label>
                         </div>
                         <div class="form-group">
-                            <p>Will you be able to follow given instruction in order to fix the problem?</p>
-                            <label>
-                                <input type="radio" name="user-recommend" value="Definitely" class="input-radio" />
-                                Definitely
-                            </label>
-                            <br></br>
-                            <label>
-                                <input type="radio" name="user-recommend" value="Maybe" class="input-radio" />Maybe
-                            </label>
-                            <br></br>
-                            <label>
-                                <input type="radio" name="user-recommend" value="Not sure" class="input-radio" />Not sure
-                            </label>
+                            <p>Pievienojat papildus informāciju, kas palīdzētu Mums sniegt piemērotako piedāvājmu:</p>
+                            <textarea id="comments" class="input-textarea form-control" name="comment" placeholder="Aprakstie situāciju..."></textarea>
                         </div>
                         <div class="form-group">
-                            <p>What kind of problems have you encountered?<span class="clue">(Check all that apply)</span></p>
-                            <label>
-                                <input name="prefer" value="Talcum powder" type="checkbox" class="input-checkbox" />Product not working
-                            </label>
-                            <label>
-                                <input name="prefer" value="Perfume" type="checkbox" class="input-checkbox" />Damadged goods
-                            </label>
-                            <label>
-                                <input name="prefer" value="Bathing soap" type="checkbox" class="input-checkbox" />Bad service
-                            </label>
-                            <label>
-                                <input name="prefer" value="Washing soap" type="checkbox" class="input-checkbox" />Incorect order
-                            </label>
-                            <label>
-                                <input name="prefer" value="sanitizer" type="checkbox" class="input-checkbox" />Shop not working
-                            </label>
-                            <label>
-                                <input name="prefer" value="Shampoo" type="checkbox" class="input-checkbox" />Technical problems
-                            </label>
-                            <label>
-                                <input name="prefer" value="face-wash" type="checkbox" class="input-checkbox" />Other
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <p>Add any comments that would help</p>
-                            <textarea id="comments" class="input-textarea form-control" name="comment" placeholder="Enter your comment here..."></textarea>
-                        </div>
-                        <div class="form-group">
-                            <p>Add any pictures if needed</p>
+                            <p>Pievienojiet bildes ja nepieciešams</p>
                             <div class="file-upload">
-                                <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+                                <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Pievienot attēlu</button>
 
                                 <div class="image-upload-wrap">
                                     <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
                                     <div class="drag-text">
-                                        <h3>Drag and drop a file or select add Image</h3>
+                                        <h3>Ievelciet attēlu vai nospiediet lai izvelētos</h3>
                                     </div>
                                 </div>
                                 <div class="file-upload-content">
                                     <img class="file-upload-image" src="#" alt="your image" />
                                     <div class="image-title-wrap">
-                                        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                        <button type="button" onclick="removeUpload()" class="remove-image">Noņemt <span class="image-title">Pievienotais attēls</span></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" id="submit" value="submit" class="submit-button">Submit</button>
+                        <button type="submit" id="submit" value="submit" class="submit-button">Nosūtīt</button>
             </form>
         </div>
 

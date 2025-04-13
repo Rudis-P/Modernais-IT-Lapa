@@ -1,0 +1,92 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    System.Diagnostics.Debug.WriteLine("Entering add_product view.");
+}
+
+@{
+    var categories = ViewData["Categories"] as List<SelectListItem>;
+
+    if (categories == null || categories.Count == 0)
+    {
+        System.Diagnostics.Debug.WriteLine("Categories list is null or empty in the view.");
+    }
+    else
+    {
+        System.Diagnostics.Debug.WriteLine($"Categories count in the view: {categories.Count}");
+    }
+}
+@{
+    System.Diagnostics.Debug.WriteLine("Exiting add_product view.");
+}
+
+    <div class="banner">
+        <h1>Modernais-IT</h1>
+        <h2>Raksta pievienošana:</h2>
+    </div>
+
+    <div id="sup_main">
+            <form method="post" enctype="multipart/form-data" action="/Product/AddProduct">
+                <div class="input-wrapper">
+                    <label for="Name">Raksta nosaukums</label>
+                    <input type="text" id="Name" name="Name" required />
+                </div>
+
+            <div class="input-wrapper">
+                    <label for="ShortDesc">Īsais apraksts</label>
+                    <input type="text" id="ShortDesc" name="ShortDesc" required />
+                </div>
+
+            <div class="input-wrapper">
+                    <label for="LongDesc">Raksta teksts</label>
+                    <textarea id="LongDesc" name="LongDesc" required></textarea>
+                </div>
+
+            <div class="input-wrapper">
+                    <label for="Price">Cena</label>
+                    <input type="number" id="Price" name="Price" step="0.01" required />
+                </div>
+
+            <div class="input-wrapper">
+                    <label for="Category">Kategorija</label>
+                    <select id="Category" name="Category" required>
+                        @if (categories != null)
+                        {
+                            @foreach (var category in categories)
+                            {
+                                System.Diagnostics.Debug.WriteLine($"Rendering category: {category.Value} - {category.Text}");
+                                <option value="@category.Value">@category.Text</option>
+                            }
+                        }
+                        else
+                        {
+                            <option value="">Kategoriju nav</option>
+                        }
+                    </select>
+                </div>
+
+            <div class="input-wrapper">
+                    <label for="ProductImage">Galvenais attēls</label>
+                    <input type="file" id="ProductImage" name="images" required />
+                </div>
+
+            <div class="input-wrapper">
+                    <label for="AdditionalImages">Papildus attēli(maksimums 3)</label>
+                    <input type="file" name="images" />
+                    <input type="file" name="images" />
+                    <input type="file" name="images" />
+                </div>
+
+            <input type="submit" value="Pievienot rakstu"/>
+            </form>    
+
+
+    </div>
+
+@{
+    System.Diagnostics.Debug.WriteLine("Exiting admin_acc view.");
+}

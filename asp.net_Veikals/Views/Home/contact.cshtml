@@ -1,15 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Contacts";
+    ViewData["Title"] = "Kontakti";
 }
 <body id="cont_bg">
 
     <div class="banner">
-        <h1>BuildIT Computers</h1>
-        <h2>Information</h2>
+        <h1>Modernais-IT</h1>
+        <h2>Informācija</h2>
     </div>
 
     <div id="main_cont">
-        <h4 class="text-center">Contacts and Address</h4>
+        <h4 class="text-center">Kontakti un adrese</h4>
         <hr>
         <div class="row">
             <div class="col-sm-8">
@@ -17,35 +17,45 @@
             </div>
 
             <div class="col-sm-4" id="contact2">
-                <h5>General contacts</h5>
+                <h5>Kontaktinformācija</h5>
                 <hr>
-                <h4 class="pt-2">Adress</h4>
+                <h4 class="pt-2">Adrese</h4>
                 <i class="fas fa-globe"></i> Dzirnavu iela 52, Centra rajons, Rīga, LV-1010<br>
-                <h4 class="pt-2">Phone</h4>
+                <h4 class="pt-2">Tālrunis</h4>
                 <i class="fas fa-phone"></i>26154826<br>
                 <i class="fas fa-phone"></i>62519471<br>
                 <i class="fab fa-whatsapp"></i>26154827<br>
-                <h4 class="pt-2">Email</h4>
-                <i class="fa fa-envelope"></i> <a href="">buildit@mail.com</a><br>
+                <h4 class="pt-2">E-pasts</h4>
+                <i class="fa fa-envelope"></i> <a href="">modernais-it@mail.com</a><br>
                 <h4></h4>
             </div>
         </div>
-        <h2>Want more info? Contact us directly:</h2>
-        <form action="">
+        <h2>Gribās zināt vairāk? Sazinies ar mums caur formu:</h2>
+        <form method="post" asp-controller="Message" asp-action="Submit">
             <div class="input-wrapper">
                 <input type="text" name="name" id="name" required>
-                <label for="name">Name</label>
+                <label for="name">Vārds</label>
             </div>
             <div class="input-wrapper">
                 <input type="text" name="subject" id="subject" required>
-                <label for="subject">Subject</label>
+                <label for="subject">Temats</label>
             </div>
             <div class="input-wrapper">
                 <textarea name="message" id="message" rows="5" required></textarea>
-                <label for="message">Message</label>
+                <label for="message">Ziņas teksts</label>
             </div>
-            <input type="submit" value="Send">
+            <input type="submit" value="Sūtīt">
         </form>
     </div>
 
 </body>
+@section Scripts {
+    <script>
+        @if (TempData["MessageSent"] != null)
+        {
+            <text>
+                    alert("Ziņojums ir veiksmīgi nosūtīts!!");
+            </text>
+        }
+    </script>
+}

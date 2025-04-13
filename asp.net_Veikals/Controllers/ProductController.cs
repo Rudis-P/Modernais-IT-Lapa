@@ -59,60 +59,108 @@ namespace asp.net_Veikals.Controllers
             {
                 try
                 {
-                    System.Diagnostics.Debug.WriteLine("Model is valid.");
-                    System.Diagnostics.Debug.WriteLine($"Name: {model.Name}");
-                    System.Diagnostics.Debug.WriteLine($"ShortDesc: {model.ShortDesc}");
-                    System.Diagnostics.Debug.WriteLine($"LongDesc: {model.LongDesc}");
-                    System.Diagnostics.Debug.WriteLine($"Price: {model.Price}");
-                    System.Diagnostics.Debug.WriteLine($"Category: {model.Category}");
-                    System.Diagnostics.Debug.WriteLine($"Images count: {images?.Count}");
 
-                    var product = new Product
+                    if (model.Id > 0)
                     {
-                        Name = model.Name,
-                        ShortDesc = model.ShortDesc,
-                        LongDesc = model.LongDesc,
-                        Price = model.Price,
-                        Category = (Category)Enum.Parse(typeof(Category), model.Category),
-                        CreatedAt = DateTime.UtcNow,
-                        UpdatedAt = DateTime.UtcNow,
-                        Slug = GenerateSlug(model.Name)
-                    };
+                        // EDIT
+                        var product = await _context.Products.Include(p => p.Images).FirstOrDefaultAsync(p => p.Id == model.Id);
+                        if (product == null) return NotFound();
 
-                    _context.Products.Add(product);
-                    await _context.SaveChangesAsync(); 
+                        product.Name = model.Name;
+                        product.ShortDesc = model.ShortDesc;
+                        product.LongDesc = model.LongDesc;
+                        product.Price = model.Price;
+                        product.Category = (Category)Enum.Parse(typeof(Category), model.Category);
+                        product.UpdatedAt = DateTime.UtcNow;
 
-                    System.Diagnostics.Debug.WriteLine($"Product saved with ID: {product.Id}");
-
-                    var mainImageUrl = await SaveImage(images.FirstOrDefault()); 
-                    System.Diagnostics.Debug.WriteLine($"Main image URL: {mainImageUrl}");
-
-                    var mainImage = new Image
-                    {
-                        Url = mainImageUrl,
-                        IsMainImage = true,
-                        ProductId = product.Id
-                    };
-                    _context.Images.Add(mainImage);
-
-                    for (int i = 1; i < images.Count && i < 3; i++)
-                    {
-                        var imageUrl = await SaveImage(images[i]);
-                        System.Diagnostics.Debug.WriteLine($"Additional image {i} URL: {imageUrl}");
-
-                        var image = new Image
+                        // Replace images if new ones are uploaded
+                        if (images != null && images.Any(i => i != null && i.Length > 0))
                         {
-                            Url = imageUrl,
-                            IsMainImage = false,
+                            var existingImages = _context.Images.Where(i => i.ProductId == product.Id);
+                            _context.Images.RemoveRange(existingImages);
+
+                            var mainImageUrl = await SaveImage(images.First());
+                            _context.Images.Add(new Image
+                            {
+                                Url = mainImageUrl,
+                                IsMainImage = true,
+                                ProductId = product.Id
+                            });
+
+                            for (int i = 1; i < images.Count && i < 3; i++)
+                            {
+                                var imageUrl = await SaveImage(images[i]);
+                                _context.Images.Add(new Image
+                                {
+                                    Url = imageUrl,
+                                    IsMainImage = false,
+                                    ProductId = product.Id
+                                });
+                            }
+                        }
+
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction("admin_acc", "Home");
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("Model is valid.");
+                        System.Diagnostics.Debug.WriteLine($"Name: {model.Name}");
+                        System.Diagnostics.Debug.WriteLine($"ShortDesc: {model.ShortDesc}");
+                        System.Diagnostics.Debug.WriteLine($"LongDesc: {model.LongDesc}");
+                        System.Diagnostics.Debug.WriteLine($"Price: {model.Price}");
+                        System.Diagnostics.Debug.WriteLine($"Category: {model.Category}");
+                        System.Diagnostics.Debug.WriteLine($"Images count: {images?.Count}");
+
+                        var product = new Product
+                        {
+
+                            Name = model.Name,
+                            ShortDesc = model.ShortDesc,
+                            LongDesc = model.LongDesc,
+                            Price = model.Price,
+                            Category = (Category)Enum.Parse(typeof(Category), model.Category),
+                            CreatedAt = DateTime.UtcNow,
+                            UpdatedAt = DateTime.UtcNow,
+                            Slug = GenerateSlug(model.Name)
+                        };
+
+                        _context.Products.Add(product);
+                        await _context.SaveChangesAsync();
+
+                        System.Diagnostics.Debug.WriteLine($"Product saved with ID: {product.Id}");
+
+                        var mainImageUrl = await SaveImage(images.FirstOrDefault());
+                        System.Diagnostics.Debug.WriteLine($"Main image URL: {mainImageUrl}");
+
+                        var mainImage = new Image
+                        {
+                            Url = mainImageUrl,
+                            IsMainImage = true,
                             ProductId = product.Id
                         };
-                        _context.Images.Add(image);
+                        _context.Images.Add(mainImage);
+
+                        for (int i = 1; i < images.Count && i < 3; i++)
+                        {
+                            var imageUrl = await SaveImage(images[i]);
+                            System.Diagnostics.Debug.WriteLine($"Additional image {i} URL: {imageUrl}");
+
+                            var image = new Image
+                            {
+                                Url = imageUrl,
+                                IsMainImage = false,
+                                ProductId = product.Id
+                            };
+                            _context.Images.Add(image);
+                        }
+
+                        await _context.SaveChangesAsync();
+                        System.Diagnostics.Debug.WriteLine("Images saved successfully.");
+
+                        return RedirectToAction("admin_acc", "Home");
                     }
-
-                    await _context.SaveChangesAsync(); 
-                    System.Diagnostics.Debug.WriteLine("Images saved successfully.");
-
-                    return RedirectToAction("admin_acc", "Home");
+                    
                 }
                 catch (Exception ex)
                 {
@@ -166,7 +214,81 @@ namespace asp.net_Veikals.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> EditProduct(int id)
+        {
+            var product = await _context.Products
+                .Include(p => p.Images)
+                .FirstOrDefaultAsync(p => p.Id == id);
 
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            var categories = Enum.GetValues(typeof(Category))
+                .Cast<Category>()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.ToString(),
+                    Text = c.ToString()
+                })
+                .ToList();
+
+            ViewData["Categories"] = categories;
+            ViewData["MainImageUrl"] = product.Images.FirstOrDefault(i => i.IsMainImage)?.Url;
+            ViewData["AdditionalImages"] = product.Images.Where(i => !i.IsMainImage).Select(i => i.Url).ToList();
+
+            var model = new ProductFormViewModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                ShortDesc = product.ShortDesc,
+                LongDesc = product.LongDesc,
+                Price = product.Price,
+                Category = product.Category.ToString(),
+            };
+
+            return View("~/Views/Home/Product/add_product.cshtml", model);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var product = await _context.Products
+                .Include(p => p.Images)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            // Delete image files from disk
+            if (product.Images != null && product.Images.Any())
+            {
+                foreach (var image in product.Images)
+                {
+                    var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", image.Url.TrimStart('/'));
+
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                }
+
+                // Remove image records from DB
+                _context.Images.RemoveRange(product.Images);
+            }
+
+            // Delete the product itself
+            _context.Products.Remove(product);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("admin_acc", "Home");
+        }
 
 
 

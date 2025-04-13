@@ -1,30 +1,29 @@
 ﻿@{
-    ViewData["Title"] = "Shop Categories";
+    ViewData["Title"] = "Jaunumi un ziņas";
 }
 @model List<ProductViewModel>
 
 <body id="s_cat_body">
 
     <div class="banner">
-        <h1>BuildIT Computers</h1>
-        <h2>Top categories:</h2>
+        <h1>Modernais-IT</h1>
+        <h2>Raksti:</h2>
     </div>
     <div id="main">
+        <h2 class="text1">Kārtot pēc katagorijas:</h2>
+
         <div class="galery">
-            <div onclick="toggleCategory('Laptop')" style="background-image: url('@Url.Content("~/images/cat1.png")');">
-                <p>Laptops</p>
+            <div onclick="toggleCategory('Jaunumi')" style="background-image: url('@Url.Content("~/images/bg_n4.png")');">
+                <p>Jaunumi</p>
             </div>
-            <div onClick="location.href='@Url.Action("Builder", "Home")'" style="background-image: url('@Url.Content("~/images/cat_2.jpg")');">
-                <p>Custom laptops</p>
+            <div onclick="toggleCategory('Zinas')" style="background-image: url('@Url.Content("~/images/bg_n5.png")');">
+                <p>Ziņas</p>
             </div>
-            <div onclick="toggleCategory('Accessories')" style="background-image: url('@Url.Content("~/images/cat_3.png")');">
-                <p>Accessories</p>
-            </div>
-            <div onclick="toggleCategory('Deal')" style="background-image: url('@Url.Content("~/images/cat_4.png")');">
-                <p>Deals</p>
+            <div onclick="toggleCategory('Pakalpojumi')" style="background-image: url('@Url.Content("~/images/bg_n6.png")');">
+                <p>Pakalpojumi</p>
             </div>
             <div onClick="location.href='@Url.Action("Support", "Home")'" style="background-image: url('@Url.Content("~/images/cat_5.png")');">
-                <p>Support</p>
+                <p>Atbalsts</p>
             </div>
         </div>
     </div>

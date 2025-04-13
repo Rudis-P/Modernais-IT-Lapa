@@ -177,9 +177,25 @@ namespace asp.net_Veikals.Controllers
                                 : "/images/default-image.jpg"
             }).ToList();
 
+            var messages = await _context.Messages.ToListAsync();
+
+            var messageViewModels = messages.Select(m => new MessageViewModel
+            {
+                Id = m.Id,
+                Name = m.Name,
+                Subject = m.Subject,
+                Content = m.Content
+            }).ToList();
+
+            var viewModel = new AdminDashboardViewModel
+            {
+                Products = productViewModels,
+                Messages = messageViewModels
+            };
+
             if (user.IsAdmin)
             {
-                return View("~/Views/Home/Account/admin_acc.cshtml", productViewModels);
+                return View("~/Views/Home/Account/admin_acc.cshtml", viewModel);
             }
             else
             {

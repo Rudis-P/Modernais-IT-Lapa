@@ -47,7 +47,23 @@ namespace asp.net_Veikals.Controllers
                                 ? product.Images.FirstOrDefault(img => img.IsMainImage)?.Url ?? "/images/default-image.jpg"
                                 : "/images/default-image.jpg"
             }).ToList();
-            return View("~/Views/Home/Account/admin_acc.cshtml", productViewModels);
+
+            var messages = await _context.Messages.ToListAsync();
+
+            var messageViewModels = messages.Select(m => new MessageViewModel
+            {
+                Id = m.Id,
+                Name = m.Name,
+                Subject = m.Subject,
+                Content = m.Content
+            }).ToList();
+
+            var viewModel = new AdminDashboardViewModel
+            {
+                Products = productViewModels,
+                Messages = messageViewModels
+            };
+            return View("~/Views/Home/Account/admin_acc.cshtml", viewModel);
         }
 
         public IActionResult AddProduct()

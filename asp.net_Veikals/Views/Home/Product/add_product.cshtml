@@ -7,9 +7,13 @@
 @{
     System.Diagnostics.Debug.WriteLine("Entering add_product view.");
 }
+@model ProductFormViewModel
 
 @{
     var categories = ViewData["Categories"] as List<SelectListItem>;
+    var mainImageUrl = ViewData["MainImageUrl"] as string;
+    var additionalImages = ViewData["AdditionalImages"] as List<string>;
+    var isEdit = Model != null && Model.Id > 0;
 
     if (categories == null || categories.Count == 0)
     {
@@ -26,67 +30,112 @@
 
     <div class="banner">
         <h1>Modernais-IT</h1>
-        <h2>Raksta pievienošana:</h2>
+        <h2>@(isEdit ? "Rediģēt rakstu:" : "Raksta pievienošana:")</h2>
     </div>
 
     <div id="sup_main">
             <form method="post" enctype="multipart/form-data" action="/Product/AddProduct">
+            @if (isEdit)
+            {
+                <input type="hidden" name="Id" value="@Model.Id" />
+            }
                 <div class="input-wrapper">
-                    <label for="Name">Product Name</label>
-                    <input type="text" id="Name" name="Name" required />
+                    <label for="Name">Raksta nosaukums</label>
+            <input type="text" id="Name" name="Name" value="@Model?.Name" required />
                 </div>
 
             <div class="input-wrapper">
-                    <label for="ShortDesc">Short Description</label>
-                    <input type="text" id="ShortDesc" name="ShortDesc" required />
+                    <label for="ShortDesc">Īsais apraksts</label>
+            <input type="text" id="ShortDesc" name="ShortDesc" value="@Model?.ShortDesc" required />
                 </div>
 
             <div class="input-wrapper">
-                    <label for="LongDesc">Long Description</label>
-                    <textarea id="LongDesc" name="LongDesc" required></textarea>
+                    <label for="LongDesc">Raksta teksts</label>
+            <textarea id="LongDesc" name="LongDesc" required>@Model?.LongDesc</textarea>
                 </div>
 
             <div class="input-wrapper">
-                    <label for="Price">Price</label>
-                    <input type="number" id="Price" name="Price" step="0.01" required />
+                    <label for="Price">Cena</label>
+            <input type="number" id="Price" name="Price" step="0.01" value="@Model?.Price" required />
                 </div>
 
             <div class="input-wrapper">
-                    <label for="Category">Category</label>
+                    <label for="Category">Kategorija</label>
                     <select id="Category" name="Category" required>
                         @if (categories != null)
                         {
                             @foreach (var category in categories)
                             {
                                 System.Diagnostics.Debug.WriteLine($"Rendering category: {category.Value} - {category.Text}");
-                                <option value="@category.Value">@category.Text</option>
-                            }
+                        <option value="@category.Value" selected="@(category.Value == Model?.Category ? "selected" : null)">
+                            @category.Text
+                        </option>
+                    }
                         }
                         else
                         {
-                            <option value="">No categories available</option>
+                            <option value="">Kategoriju nav</option>
                         }
                     </select>
                 </div>
 
             <div class="input-wrapper">
-                    <label for="ProductImage">Main Image</label>
-                    <input type="file" id="ProductImage" name="images" required />
+                    <label for="ProductImage">Galvenais attēls</label>
+                <input type="file" id="ProductImage" name="images" onchange="previewImage(this, 'mainPreview')" @(isEdit ? "" : "required") />
+                <div>
+                    @if (!string.IsNullOrEmpty(mainImageUrl))
+                    {
+                        <img id="mainPreview" src="@mainImageUrl" alt="Galvenais attēls" style="max-height: 200px;" />
+                    }
+                    else
+                    {
+                        <img id="mainPreview" style="max-height: 200px; display:none;" />
+                    }
                 </div>
+            </div>
 
             <div class="input-wrapper">
-                    <label for="AdditionalImages">Additional Images (optional, up to 3)</label>
-                    <input type="file" name="images" />
-                    <input type="file" name="images" />
-                    <input type="file" name="images" />
+                    <label for="AdditionalImages">Papildus attēli(maksimums 3)</label>
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        <input type="file" name="images" onchange="previewImage(this, 'extraPreview@(i)')" />
+                        <div>
+                            @{
+                                var imgUrl = (additionalImages != null && i < additionalImages.Count) ? additionalImages[i] : null;
+                            }
+                            @if (!string.IsNullOrEmpty(imgUrl))
+                            {
+                                <img id="extraPreview@(i)" src="@imgUrl" style="max-height: 200px;" />
+                            }
+                            else
+                            {
+                                <img id="extraPreview@(i)" style="max-height: 200px; display:none;" />
+                            }
+                        </div>
+                    }
                 </div>
 
-                <button type="submit">Add Product</button>
-            </form>    
+                <input type="submit" value="@(isEdit ? "Saglabāt izmaiņas" : "Pievienot rakstu")" />
+            </form>
 
 
-    </div>
-
+</div>
+@section Scripts {
+    <script>
+        function previewImage(input, imgId) {
+            const preview = document.getElementById(imgId);
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+}
 @{
     System.Diagnostics.Debug.WriteLine("Exiting admin_acc view.");
 }
